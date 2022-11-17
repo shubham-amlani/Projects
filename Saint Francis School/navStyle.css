@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+}
+.navbar{
+    height: 70px;
+    width: 100%;
+    background-color: #00aaff;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    display: flex;
+}
+
+.logo{
+    color: white;
+    font-size: 40px;
+    padding: 0px 45px;
+    font-family: 'Kanit', sans-serif;
+    align-self: center;
+}
+
+.nav_cts{
+    padding: 10px 15px;
+    color: black;
+    display: inline-block;
+    font-size: 20px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.nav_cts:hover{
+    color: red;
+    cursor: pointer;
+    background-color: #008acf;
+}
+
+.current{
+    color: blue;
+    background-color: #008acf;
+}
+
+.log_butt{
+    position: absolute;
+    right: 260px;
+    top: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #00ff40;
+    height: 40px;
+    width: 95px;
+    color: white;
+    font-family:sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.log_butt:hover{
+    background-color: #00d635;
+    cursor: pointer;
+    color: #ff8c00;
+}
+.or {
+    position: absolute;
+    right: 218px;
+    top: 27px;
+}
+.signup_butt{
+    position: absolute;
+    right: 110px;
+    top: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #0048ff;
+    height: 40px;
+    width: 95px;
+    color: white;
+    font-family:sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.signup_butt:hover{
+    background-color: #0036c0;
+    cursor: pointer;
+    color: #ff8c00;
+}
+
+.nav_Line{
+    position: absolute;
+    right: 380px;
+    top: 18px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+}
