@@ -1,3 +1,19 @@
+.main_Heading{
+    display: flex;
+    justify-content: center;
+}
+
+.logo_Heading{
+    margin-top: 20px;
+    width: 650px;
+    font-size: 35px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #00aaff;
+    color: white;
+    font-family: 'Kanit', cursive;
+}
+
 .main_1{
     display: flex;
     justify-content: center;
