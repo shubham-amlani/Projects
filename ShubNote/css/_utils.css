@@ -1,0 +1,30 @@
+html {
+  position: relative;
+}
+
+.height {
+  min-height: 81vh;
+}
+
+.height-sm {
+  min-height: 20vh;
+}
+
+.height-xs {
+  min-height: 5vh;
+}
+
+.fixed-bottom-right {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff; /* Bootstrap's primary color */
+  color: #fff; /* White text color */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.fixed-bottom-right:hover {
+  background-color: #0056b3;
+}
