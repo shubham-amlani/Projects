@@ -1,3 +1,14 @@
+<?php
+session_start();
+$showPostError = false;
+if(!(isset($_SESSION['loggedin'])) || $_SESSION['loggedin']!=true){
+    header("Location: index.php");
+}
+if(isset($_SESSION['postError'])){
+    $showPostError = true;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,32 +21,55 @@
 
 <body>
     <?php include 'partials/_navbar.php';?>
+    <?php
+    if($showPostError){
+        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> '.$_SESSION['postError'].'
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+      unset($_SESSION['postError']);
+      $showPostError = false;
+    }
+    ?>
+    <div class="bg-secondary-subtle p-3">
+        <h2>Posting as:</h2>
+        <hr>
+        <div class="d-flex align-items-center">
+            <?php
+            include 'handlers/_handleDisplayImage.php';
+            $img = displayUserImage($_SESSION['user_id']);
+            echo $img;
+            ?>
+            <div class="user-details">
+                <h4 class="username"><?php echo $_SESSION['username'];?></h4>
+                <p><?php echo $_SESSION['user_email']; ?></p>
+            </div>
+        </div>
+        <hr class="mb-0">
+    </div>
     <div class="container my-4 p-4 m-auto bg-secondary-subtle ">
         <h1 class="">Upload a post</h1>
         <ul>
-            <li>Be civil. Don't post anything that a reasonable person would consider offensive, abusive, or hate
-                speech.</li>
-            <li>Keep it clean. Don't post anything disrespectful or explicit.
-                Respect each other.</li>
-            <li>Don't harass or grief anyone, impersonate people, or expose their private information.</li>
+            <li>Be respectful.</li>
+            <li>Keep it clean.</li>
+            <li>No harassment or impersonation.</li>
             <li>Respect our platform.</li>
         </ul>
-        <form>
+        <form action="handlers/_handleUpload.php" method="post">
             <div class="mb-3">
                 <label for="postTitle" class="form-label">Post title</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" class="form-control" id="postTitle" name="postTitle">
             </div>
             <div class="mb-3">
-                <label for="bio" class="form-label">Post description</label>
-                <textarea class="form-control" id="comment" name="comment" style="height: 100px"
+                <label for="postDescription" class="form-label">Post description</label>
+                <textarea class="form-control" id="postDescription" name="postDescription" style="height: 400px"
                     placeholder="Start expressing it freely..."></textarea>
             </div>
             <hr>
             <p>Visiblity - Don't worry, you can change this anytime.</p>
-            <select name="visiblity" id="" class="form-select">
+            <select name="visiblity" id="visiblity" class="form-select">
                 <option value="select">Choose who can see this post</option>
                 <option value="public">Public (anyone can see)</option>
-                <option value="followers">Followers only (only your followers can see)</option>
                 <option value="private">Private (only you can see)</option>
             </select>
             <button type="submit" class="btn btn-success mt-4">Post to shubNote</button>

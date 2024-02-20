@@ -6,6 +6,17 @@ html {
   min-height: 81vh;
 }
 
+.height-md {
+  min-height: 50vh;
+}
+
+.border-container {
+  border-top: 2px solid red !important; /* White border on top */
+  border-bottom: 2px solid red; /* White border on bottom */
+  padding: 20px;
+  background-color: blue; /* Background color */
+}
+
 .height-sm {
   min-height: 20vh;
 }
@@ -16,7 +27,7 @@ html {
 
 .fixed-bottom-right {
   position: fixed;
-  bottom: 20px;
+  bottom: 40px;
   right: 20px;
   background-color: #007bff; /* Bootstrap's primary color */
   color: #fff; /* White text color */
@@ -27,4 +38,8 @@ html {
 
 .fixed-bottom-right:hover {
   background-color: #0056b3;
+}
+
+.hover-ul:hover {
+  text-decoration: underline;
 }

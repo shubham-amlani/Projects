@@ -1,0 +1,1 @@
+<a href="upload.php" class="fixed-bottom-right">Upload a Post</a>

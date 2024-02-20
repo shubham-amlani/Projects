@@ -7,9 +7,10 @@ function checkPage($str){
         return false;
     }
 }
+
 // Navbar will be displayed differently according to different pages
 echo '
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark sticky-sm-top ">
   <div class="container-fluid">
     <a class="navbar-brand" href="index.php">shubNote</a>
     <button
@@ -34,37 +35,39 @@ echo '
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
+          <a class="nav-link '.(checkPage('explore.php')?'active':'').'" href="explore.php">Explore</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link '.(checkPage('about.php')?'active':'').'" href="about.php">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">FAQ</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Trending</a>
-        </li>
-      </ul>
-      <button class="btn btn-outline-info"><a href="myaccount.php" class="nav-link">My account</a></button>
-      <form class="d-flex mx-0 mx-md-4 my-4 my-md-0" role="search">
+      </ul>';
+      if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']==true){
+        echo '<button class="btn btn-outline-info"><a href="myaccount.php" class="nav-link">My account</a></button>
+        <form class="d-flex mx-0 mx-md-4 my-4 my-md-0" role="search" action="search.php" method="get">
         <input
           class="form-control me-2"
           type="search"
           placeholder="Search"
           aria-label="Search"
+          name="search"
         />
         <button class="btn btn-success" type="submit">Search</button>
       </form>
-      <div class="buttons mx-0 d-flex gap-2 mt-md-0 mx-md-2 mt-2">
+      <button class="btn btn-outline-success">
+        <a href="partials/_logout.php" class="nav-link">Logout</a>
+      </button>';
+      }
+      else{
+        echo '<div class="buttons mx-0 d-flex gap-2 mt-md-0 mx-md-2 mt-2">
         <button class="btn btn-outline-success">
           <a href="login.php" class="nav-link">Login</a>
         </button>
         <button class="btn btn-outline-primary">
           <a href="signup.php" class="nav-link">Signup</a>
         </button>
-      </div>
-    </div>
+      </div>';
+      }
+echo '</div>
   </div>
 </nav>
 '; ?>

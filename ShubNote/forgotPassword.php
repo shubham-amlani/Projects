@@ -15,13 +15,13 @@
         <h1>Forgot your password?</h1>
         <hr>
         <h3>Request a reset</h3>
-        <form>
+        <form action="handlers/_handleForgotPassword.php" method='post'>
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label mx-1 mx-md-0">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                <label for="email" class="form-label mx-1 mx-md-0">Email address</label>
+                <input type="email" class="form-control" id="email" name="email"
                     placeholder="Enter your email address" />
             </div>
-            <button class="btn btn-primary">Reset my password</button>
+            <button class="btn btn-primary" type="submit">Reset my password</button>
         </form>
         <hr>
         <p>If an account exists with this email, a reset link will be sent to you.</p>
