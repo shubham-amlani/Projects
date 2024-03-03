@@ -28,6 +28,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true){
 </head>
 
 <body class="d-flex align-items-center justify-content-center">
+    <?php include 'partials/_functions.php'; ?>
     <?php include 'partials/_sidebar.php'; ?>
     <main class="main mx-2 container-md p-2">
         <div class="height py-md-5 px-2">

@@ -19,29 +19,39 @@ $result = $stmt_followed_users->get_result();
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <?php include 'partials/_styles.php'?>
     <?php include 'partials/_functions.php'?>
+    <?php include 'partials/_styles.php'?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+    .container-md {
+        width: 50%;
+    }
+
+    @media (max-width: 768px) {
+        .container-md {
+            width: 100%;
+        }
+    }
+    </style>
     <title>Home - shubNote</title>
 </head>
 
 <body class="d-flex align-items-center justify-content-center">
     <?php include 'partials/_sidebar.php'; ?>
-    <main class="main mx-0">
+    <main class="main mx-0 container-md p-0">
         <div class="container height mx-auto w-100">
             <h1 class="p-3 m-0 my-0 my-md-3">
                 Latest Posts by the people you follow
             </h1>
             <div class="feed">
-                <?php
+            <?php
             if($result->num_rows > 0){
                 while($row = $result->fetch_assoc()){
-                    $sql_display_posts = "SELECT * FROM `posts` WHERE `post_user_id`=? AND `is_private`=0 LIMIT 3";
+                    $sql_display_posts = "SELECT * FROM `posts` WHERE `post_user_id`=? AND `is_private`=0";
                     $stmt_display_posts = $conn->prepare($sql_display_posts);
                     $stmt_display_posts->bind_param('i', $row['followed_user_id']);
                     $stmt_display_posts->execute();
                     $result_display_posts = $stmt_display_posts->get_result();
-                    $row_display_posts = $result_display_posts->fetch_assoc();
                 if($result_display_posts->num_rows > 0){
                     while($row_display_posts = $result_display_posts->fetch_assoc()){
                         $post_id = $row_display_posts['post_id'];
@@ -58,7 +68,7 @@ $result = $stmt_followed_users->get_result();
                         $result_fetch_user = $stmt_fetch_user->get_result(); 
                         $row_fetch_user = $result_fetch_user->fetch_assoc();
 
-                        $username = $row_fetch_user['username'];
+                        $username = $row_fetch_user['username'];       
                         printPost($post_id, $post_user_id, $username, $formattedDate, $post_title, $post_description, 0);        
                     }
                 }

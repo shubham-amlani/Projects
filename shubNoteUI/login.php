@@ -161,6 +161,7 @@ if(isset($_SESSION['loginError'])){
             </div>
         </div>
     </footer>
+    <?php include 'partials/_scripts.php';?>
 </body>
 
 </html>

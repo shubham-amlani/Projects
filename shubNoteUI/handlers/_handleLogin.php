@@ -20,7 +20,7 @@ include '../partials/_dbconnect.php';
             if($row['is_verified']==0){
                 include '../partials/_sendCode.php';
                 $code = rand(100000, 999999);
-                // sendCode($email, $code);
+                sendCode($email, $code);
                 $sql = "UPDATE `users` SET `verification_code`=? WHERE `user_email`=?";
                 $stmt_setcode = $conn->prepare($sql);
                 $stmt_setcode->bind_param("ss", $code, $email);

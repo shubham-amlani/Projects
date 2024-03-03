@@ -59,10 +59,10 @@ if(isset($_SESSION['followMessage'])){
 </head>
 
 <body class="d-flex align-items-center justify-content-center">
-    <?php include 'partials/_sidebar.php'; ?>
     <?php include 'partials/_functions.php'; ?>
-    <main class="main mx-0">
-        <div class="height mx-auto container-md">
+    <?php include 'partials/_sidebar.php'; ?>
+    <main class="main mx-0 container-md px-2">
+        <div class="height mx-auto">
             <div class="user-account">
                 <hr>
                 <div class="part-1 d-flex align-items-center">
@@ -99,18 +99,16 @@ if(isset($_SESSION['followMessage'])){
                         <b><?php echo numPublicPosts($user_id) ?></b>
                         <span>Public Posts</span>
                     </div>
-                    <a href="followers.php" class="td-none">
+                    <a href="followers.php?profileid=<?php echo $user_id?>" class="td-none">
                         <div class="followers d-flex flex-column align-items-center ">
                             <b><?php echo numFollowers($user_id) ?></b>
                             <span>Followers</span>
                         </div>
                     </a>
-                    <a href="following.php" class="td-none">
                         <div class="following d-flex flex-column align-items-center ">
                             <b><?php echo numFollowing($user_id) ?></b>
                             <span>Following</span>
                         </div>
-                    </a>
                 </div>
                 <hr>
             </div>
@@ -148,5 +146,4 @@ if(isset($_SESSION['followMessage'])){
     <?php include 'partials/_bottomNav.php';?>
     <?php include 'partials/_scripts.php';?>
 </body>
-
 </html>

@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt_insert = $conn->prepare($sql);
                     $stmt_insert->bind_param("sssss", $name, $username, $email, $hash, $code);
                     $stmt_insert->execute();
-                    // sendCode($email, $code);
+                    sendCode($email, $code);
                     if ($stmt_insert->affected_rows > 0) {
                         $_SESSION['signupEmail'] = $email;
                         header("Location: ../verifycode.php");

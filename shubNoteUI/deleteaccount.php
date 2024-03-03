@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'partials/_functions.php';
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     header("Location: login.php");
 }
@@ -12,9 +13,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <?php include 'partials/_styles.php'?>
-    <?php include 'handlers/_handleDisplayImage.php';?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <?php include 'partials/_styles.php';?>
     <style>
     .container-md {
         width: 50%;
@@ -32,6 +31,15 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 <body class="d-flex align-items-center justify-content-center">
     <?php include 'partials/_sidebar.php'; ?>
     <main class="main mx-0 container-md p-0">
+    <?php
+    if(isset($_SESSION['deleteAccountError'])){
+        echo '<div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+        <strong> Error!</strong> '.$_SESSION['deleteAccountError'].'
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+      unset($_SESSION['deleteAccountError']);
+    }
+    ?>
         <div class="container mx-auto my-4 border-secondary-subtle border-2 border rounded p-4">
             <h1 class="">Delete your account</h1>
             <p class="text fs-5">Are you sure you want to delete your account? Please note that this action is

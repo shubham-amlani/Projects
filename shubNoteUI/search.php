@@ -5,19 +5,22 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 }
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     include 'partials/_dbconnect.php';
-    $query = $_GET['search'];
+    if(isset($_GET['search'])){
+        $query = $_GET['search'];
     
-    $sql_users = "SELECT * FROM `users` WHERE MATCH (`username`) AGAINST (?)";
-    $stmt_users = $conn->prepare($sql_users);
-    $stmt_users->bind_param("s", $query);
-    $stmt_users->execute();
-    $result_users = $stmt_users->get_result();
-
-    $sql_posts = "SELECT * FROM `posts` WHERE MATCH (`post_title`, `post_description`) AGAINST (?) AND `is_private`=0";
-    $stmt_posts = $conn->prepare($sql_posts);
-    $stmt_posts->bind_param("s", $query);
-    $stmt_posts->execute();
-    $result_posts = $stmt_posts->get_result();
+        $sql_users = "SELECT * FROM `users` WHERE MATCH (`username`) AGAINST (?)";
+        $stmt_users = $conn->prepare($sql_users);
+        $stmt_users->bind_param("s", $query);
+        $stmt_users->execute();
+        $result_users = $stmt_users->get_result();
+    
+        $sql_posts = "SELECT * FROM `posts` WHERE MATCH (`post_title`, `post_description`) AGAINST (?) AND `is_private`=0";
+        $stmt_posts = $conn->prepare($sql_posts);
+        $stmt_posts->bind_param("s", $query);
+        $stmt_posts->execute();
+        $result_posts = $stmt_posts->get_result();
+    }
+    
 }
 ?>
 
@@ -44,8 +47,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 </head>
 
 <body class="d-flex align-items-center justify-content-center">
-    <?php include 'partials/_sidebar.php'; ?>
     <?php include 'partials/_functions.php'; ?>
+    <?php include 'partials/_sidebar.php'; ?>
     <main class="main mx-0 container-md p-0">
         <div class="height py-md-5 px-2">
             <h2 class="my-3">Search <span class="highlight">shubNote</span></h2>
@@ -56,8 +59,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                     <button class="nav-link" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
-            <h2>Users</h2>
             <?php 
+            if(isset($_GET['search'])){
+                echo '<h2>Users</h2>';
                 if($result_users->num_rows > 0){
                     while($row_users = $result_users->fetch_assoc()){
                         $user_id = $row_users['user_id'];
@@ -71,10 +75,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             <span class="fs-4">No search results</span>
             </div>';
                 }
-            ?>
-            <h2>Posts</h2>
-            <div class="postResults">
-                <?php
+            }
+                if(isset($_GET['search'])){
+                    echo '<h2>Posts</h2>
+                    <div class="postResults">';
                     if($result_posts->num_rows > 0){
                         while($row_posts = $result_posts->fetch_assoc()){
                             $sql = "SELECT `username` FROM `users` WHERE `user_id`=?";
@@ -97,9 +101,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                     }
                     else{
                         echo '<div class="bg-secondary-subtle p-3 my-3 mx-auto container">
-            <span class="fs-4">No search results</span>
-            </div>';
+                        <span class="fs-4">No search results</span>
+                         </div>';
                     }
+                }
+                    
                 ?>
             </div>
         </div>

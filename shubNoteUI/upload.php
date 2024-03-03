@@ -8,8 +8,8 @@ session_start();
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <?php include 'partials/_styles.php'?>
     <?php include 'partials/_functions.php'?>
+    <?php include 'partials/_styles.php'?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style>
     .container-md {

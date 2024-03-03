@@ -38,8 +38,8 @@ else if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
 </head>
 
 <body class="d-flex align-items-center justify-content-center">
-    <?php include 'partials/_sidebar.php'; ?>
     <?php include 'partials/_functions.php'; ?>
+    <?php include 'partials/_sidebar.php'; ?>
     <main class="main mx-0 container-md p-0">
         <div class="height py-md-5 px-2">
             <h1 class="py-3 px-2">

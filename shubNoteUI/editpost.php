@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'partials/_functions.php';
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     header("Location: index.php");
 }
@@ -28,6 +29,8 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
             $row_getuser = $result_getuser->fetch_assoc();
             $post_username = $row_getuser['username'];  
             $is_private = $row['is_private'];
+            $key = $row['enc_key'];
+            $iv = $row['enc_iv'];
             if($is_private == '1'){
                 $visiblity = 'private';
                 if(!isset($_SESSION['loggedin'])){
@@ -106,9 +109,19 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
     <?php include 'partials/_bottomNav.php';?>
     <?php include 'partials/_scripts.php';?>
     <script>
+        <?php 
+    if($visiblity == 'private'){
+        $post_title = htmlspecialchars_decode(openssl_decrypt($post_title, 'aes-256-cbc', $key, 0, $iv));
+        $post_description = htmlspecialchars_decode(openssl_decrypt($post_description, 'aes-256-cbc', $key, 0, $iv));
+    }
+    else{
+        $post_title = htmlspecialchars_decode($post_title);
+        $post_description = htmlspecialchars_decode($post_description);
+    }
+    ?>
     let postTitle = document.getElementById('postTitle');
     let postDescription = document.getElementById('postDescription');
-    let postTitleValue = '<?php echo '`'.$post_title.'`' ?>';
+    let postTitleValue =<?php echo '`'.$post_title.'`' ?>;
     postTitle.value = postTitleValue;
     postDescription.value = <?php echo '`'.$post_description.'`' ?>;
     </script>

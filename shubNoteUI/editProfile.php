@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'partials/_functions.php';
 include 'partials/_sessionVars.php';
 if(!(isset($_SESSION['loggedin'])) || $_SESSION['loggedin']!=true){
     header("Location: index.php");
@@ -111,6 +112,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             </div>';
             unset($_SESSION['editProfileSuccess']);  
         }
+        if(isset($_SESSION['changePassMessage'])){
+            echo '<div class="alert alert-success alert-dismissible fade show mt-3 " role="alert">
+            <strong>Success!</strong> '.$_SESSION['changePassMessage'].'
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+            unset($_SESSION['changePassMessage']);
+        }
+        else if(isset($_SESSION['changePassError'])){
+            echo '<div class="alert alert-danger alert-dismissible fade show mt-3 " role="alert">
+            <strong>Sorry!</strong> '.$_SESSION['changePassError'].'
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+            unset($_SESSION['changePassError']);
+        }
         ?>
         <div class="height mx-auto w-100 my-3">
             <h2>Edit your profile</h2>
@@ -133,7 +148,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <hr>
             <a href="deleteaccount.php"><button class="btn btn-danger">Delete my
                     account</button></a>
-            <a href="deleteaccount.php"><button class="btn btn-success">Change Password</button></a>
+            <a href="changepassword.php"><button class="btn btn-success">Change Password</button></a>
         </div>
     </main>
     <script>

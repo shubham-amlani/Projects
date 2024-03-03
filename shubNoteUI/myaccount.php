@@ -109,7 +109,7 @@ if(!(isset($_SESSION['loggedin'])) || $_SESSION['loggedin']!=true){
                         echo nl2br($_SESSION['user_bio']);
                     }
                     else{
-                        echo "Click on edit profile to add your bio";
+                        echo "Click on edit profile to add your <span class='highlight'>bio</span> and <span class='highlight'>name</span>";
                     }?>
                     </p>
                 </div>
@@ -145,16 +145,20 @@ if(!(isset($_SESSION['loggedin'])) || $_SESSION['loggedin']!=true){
                 $result = $stmt->get_result();
                 $num_posts = $result->num_rows;
 
-                if ($num_posts > 0) {
-                    while ($row = $result->fetch_assoc()) {
+                if($num_posts > 0){
+                    while($row = $result->fetch_assoc()){
                         $timestamp = strtotime($row['created']);
                         $formattedDate = date("jS M Y h:i A", $timestamp);
-                        printPost($row['post_id'], $user_id, $_SESSION['username'], $formattedDate, $row['post_title'], $row['post_description'], $row['is_private']);
+                        if(empty($row['enc_key'])){
+                            $post_title = $row['post_title'];
+                            $post_description = $row['post_description'];
+                        } 
+                        else{
+                            $post_title = openssl_decrypt($row['post_title'], 'aes-256-cbc', $row['enc_key'], 0, $row['enc_iv']);
+                            $post_description = openssl_decrypt($row['post_description'], 'aes-256-cbc', $row['enc_key'], 0, $row['enc_iv']);
+                        }
+                        printPost($row['post_id'], $user_id, $user_name, $formattedDate, $post_title, $post_description, $row['is_private']);
                     }
-                }
-                else{
-                    echo '<div class="my-2"><p class="m-0">No Posts by you!</p>
-                    <p class="m-0">Click on plus icon to make a post</p></div>';
                 }
                 $stmt->close();
                 ?>

@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $result = $stmt->get_result();
     if($result->num_rows > 0){
         $code = rand(100000, 999999);
-        // sendCode($email, $code);
+        sendCode($email, $code);
         $sql_insert_code = "UPDATE `users` SET `verification_code`=? WHERE `user_email`=?";
         $stmt_insert_code = $conn->prepare($sql_insert_code);
         $stmt_insert_code->bind_param("is", $code, $email);

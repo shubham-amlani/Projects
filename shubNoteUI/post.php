@@ -34,6 +34,8 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
                         exit();
                     }
                 }
+                $post_title = openssl_decrypt($row['post_title'], 'aes-256-cbc', $row['enc_key'], 0, $row['enc_iv']);
+                $post_description = openssl_decrypt($row['post_description'], 'aes-256-cbc', $row['enc_key'], 0, $row['enc_iv']);
             }
         }
     }
@@ -67,32 +69,9 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
 </head>
 
 <body class="d-flex align-items-center justify-content-center">
-    <?php include 'partials/_sidebar.php'; ?>
     <?php include 'partials/_functions.php'; ?>
+    <?php include 'partials/_sidebar.php'; ?>
     <main class="main mx-0 container-md">
-        <!-- Modal -->
-        <div class="modal fade" id="deletePostModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete post</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Are you sure you want to delete this post?
-                    </div>
-                    <div class="modal-footer">
-                        <form action="handlers/_handleDelete.php" method="post">
-                            <input type="hidden" name="postid" value="<?php echo $post_id;?>">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" role="button" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <?php
     if(isset($_SESSION['commentSuccess']) && $_SESSION['commentSuccess'] == true){
         echo '<div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
@@ -166,9 +145,9 @@ if($_SERVER['REQUEST_METHOD']=='GET'){
         <div class="height mx-auto w-100">
             <div class="post d-flex flex-column my-5">
                 <div class="upper-post d-flex">
-                    <img src="user_images/profile (2).jpg" alt="" srcset="" class="user-image">
+                    <?php echo displayUserImage($post_user_id);?>
                     <div class="upper-post-right d-flex flex-column">
-                        <span class="username"><?php echo $post_username;?></span>
+                    <a class="nav-link m-0 p-0" href="profile.php?profileid=<?php echo $post_user_id?>"><span class="username"><?php echo $post_username;?></span></a>
                         <span class="post-date"><?php echo $formattedDate;?></span>
                         <?php 
                         if($is_private == 1){

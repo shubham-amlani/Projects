@@ -13,7 +13,7 @@ function displayUserProfileImage($user_id) {
         return '<img src="'.$image_path.'" alt="Profile Image" class="user-profile-image" />';
     }
     else{
-        return '<img src="images/user-default.avif" alt="Profile Image" class="user-profile-image d-inline" />';
+        return '<img src="images/user-default.png" alt="Profile Image" class="user-profile-image d-inline" />';
     }
 }
 
@@ -31,7 +31,7 @@ function displayUserImage($user_id) {
         return '<img src="'.$image_path.'" alt="Profile Image" class="user-image" />';
     }
     else{
-        return '<img src="images/user-default.avif" alt="Profile Image" class="user-image d-inline" />';
+        return '<img src="images/user-default.png" alt="Profile Image" class="user-image d-inline" />';
     }
 }
 
@@ -177,5 +177,22 @@ function printUser($user_id, $username, $name, $page){
     }
 echo    '</form>
         </div>';
+}
+
+// Function to check currentPage
+function checkPage($str){
+    if(str_contains($_SERVER['PHP_SELF'], $str)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+// Function reverseValidate
+function reverseValidate($str){
+    $str_unvalidated = str_replace("&lt;", "<", $str);
+    $str_unvalidated = str_replace("&gt;", ">", $str_unvalidated);
+    return $str_unvalidated;
 }
 ?>

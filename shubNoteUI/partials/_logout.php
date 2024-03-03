@@ -4,5 +4,5 @@ echo "Logging you out. Please Wait...";
 
 session_unset();
 session_destroy();
-header("Location: /ShubNoteui/index.php")
+header("Location: ../index.php")
 ?>
