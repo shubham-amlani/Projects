@@ -1,0 +1,99 @@
+.keyboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 20px;
+  align-items: center; /* Center align the keyboard */
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 5px;
+  justify-content: center; /* Ensure rows are centered */
+}
+
+.row-0 .key-button {
+  width: 50px;
+}
+
+.row-1 .key-button,
+.row-2 .key-button {
+  width: 56px;
+}
+
+/* Key button styles */
+.key-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e5e9f1; /* Light grey background */
+  border: 1px solid #d0d4dc; /* Subtle border */
+  border-radius: 6px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #414a5e;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+  width: 56px;
+  height: 100%; /* Ensure full height for uniform keys */
+}
+
+.key-button:active {
+  background-color: #d0d4dc; /* Darken key on press */
+}
+
+.fa-icon {
+  font-size: 1.2rem;
+  color: #414a5e;
+}
+
+.key-button.green {
+  background-color: green;
+  color: white;
+}
+
+.key-button.yellow {
+  background-color: yellow;
+  color: black;
+}
+
+.key-button.gray {
+  background-color: gray;
+  color: white;
+}
+
+/* Responsive keyboard adjustments */
+@media (max-width: 768px) {
+  .keyboard-container {
+    margin: 10px; /* Reduce margin for smaller screens */
+    gap: 4px; /* Reduce gap between rows */
+  }
+
+  .key-button {
+    width: 45px !important; /* Adjust key size */
+    font-size: 0.9rem; /* Slightly smaller font */
+  }
+
+  .keyboard-row {
+    gap: 3px; /* Reduce gap between keys */
+  }
+}
+
+
+@media (max-width: 490px) {
+  .keyboard-container {
+    gap: 3px; /* Further reduce row gap */
+  }
+
+  .key-button {
+    width: 34px !important; /* Smaller key size for narrow screens */
+    height: 30px;
+    font-size: 0.6rem; /* Reduce font size */
+  }
+
+  .keyboard-row {
+    gap: 2px; /* Minimal gap for compact keyboards */
+  }
+}

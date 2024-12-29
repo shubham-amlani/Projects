@@ -1,0 +1,118 @@
+body {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+}
+
+.main-container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Make it a positioned parent for the alert */
+  width: 100%; /* Ensure it spans the full width */
+}
+
+.heading {
+  color: #414a5e;
+  margin: 10px 0;
+}
+
+.current-cell {
+  border: 2px solid #ff5722; /* Highlight color for the last entered cell */
+  box-shadow: 0 0 5px #ff5722;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pop {
+  animation: pop 0.2s ease;
+}
+
+.alert-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background-color: #ff5722;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  animation: fadeInOut 0.5s step-end;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.grid-cell.correct {
+  background-color: #6aaa64; /* Green for correct letter */
+}
+
+.grid-cell.present {
+  background-color: #c9b458; /* Yellow for present letter */
+}
+
+.grid-cell.absent {
+  background-color: #787c7e; /* Gray for absent letter */
+}
+
+.btns-box {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap; /* Ensure buttons wrap on smaller screens */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-container {
+    width: 90%; /* Fit container within the screen */
+  }
+
+  .btns-box {
+    gap: 10px; /* Adjust spacing between buttons */
+  }
+
+  .alert-box {
+    font-size: 16px; /* Adjust font size */
+    padding: 8px 16px; /* Reduce padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    width: 100%; /* Full width for smaller devices */
+  }
+
+  .btns-box {
+    gap: 5px; /* Adjust spacing */
+  }
+
+  .alert-box {
+    font-size: 14px; /* Smaller font for very small devices */
+    padding: 6px 12px; /* Further reduce padding */
+  }
+}

@@ -1,0 +1,94 @@
+.grid-container {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr); /* 6 rows */
+  grid-template-columns: repeat(5, 1fr); /* 5 columns */
+  gap: 3px; /* Spacing between cells */
+  margin: 0 auto; /* Center the grid */
+  box-sizing: border-box;
+}
+
+.grid-cell-container {
+  perspective: 1000px; /* Add perspective to enable 3D flip */
+}
+
+.grid-row {
+  display: contents; /* Rows managed by grid layout */
+}
+
+.grid-cell-front {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+/* Back side of the cell */
+.grid-cell-back {
+  position: absolute;
+  backface-visibility: hidden;
+  transform: rotateY(180deg); /* Flip the back side */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+/* Flip the cell when it has a status */
+.grid-cell.correct {
+  background-color: #4caf50; /* Green for correct */
+  color: white;
+  transform: rotateY(360deg); /* Flip the cell */
+}
+
+.grid-cell.present {
+  background-color: #ffeb3b; /* Yellow for present */
+  color: #393e4c;
+  transform: rotateY(360deg); /* Flip the cell */
+}
+
+.grid-cell.absent {
+  background-color: #bdbdbd; /* Gray for absent */
+  color: white;
+  transform: rotateY(360deg); /* Flip the cell */
+}
+
+.grid-cell.current-cell {
+  border: 2px solid #ff9800; /* Highlight the current cell */
+}
+
+.grid-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #dee1e9;
+  height: 56px;
+  width: 56px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #fbfcff;
+  color: #393e4c;
+  user-select: none;
+  transition: border 0.2s, transform 0.1s ease-in-out;
+}
+
+/* Responsive grid adjustments */
+@media (max-width: 768px) {
+  .grid-container {
+    /* width: 60%; */
+    gap: 2px; /* Reduce gap between cells */
+  }
+
+  .grid-cell {
+    height: 60px; /* Slightly smaller cells */
+    width: 60px;
+    font-size: 16px; /* Adjust font size */
+  }
+}
+
+@media (max-width: 480px) {
+
+  .grid-cell {
+    height: 50px; /* Smaller cells for narrow screens */
+    width: 50px;
+    font-size: 14px; /* Smaller font for better fit */
+  }
+}
