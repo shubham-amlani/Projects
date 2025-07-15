@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Chat</title>
+</head>
+<body>
+    <div>
+        <h1>Chat Room</h1>
+        <div id="chat-box" style="height: 300px; border: 1px solid #fff; overflow-y: scroll;"></div>
+        <input type="text" id="message" placeholder="Enter your message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        var conn = new WebSocket('ws://localhost:8081/chat');
+        var chatBox = document.getElementById('chat-box');
+
+        conn.onopen = function(e) {
+            console.log("Connection established!");
+        };
+
+        conn.onmessage = function(e) {
+            var message = document.createElement('p');
+            message.textContent = e.data;
+            chatBox.appendChild(message);
+            chatBox.scrollTop = chatBox.scrollHeight; // auto-scroll
+        };
+
+        function sendMessage() {
+            var message = document.getElementById('message').value;
+            if (message) {
+                conn.send(message);
+                document.getElementById('message').value = ''; // clear input
+            }
+        }
+    </script>
+</body>
+</html>

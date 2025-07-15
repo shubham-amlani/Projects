@@ -1,0 +1,171 @@
+body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat';
+  background-color: #1a2c38;
+}
+
+.navbar{
+  background-color: #1a2c38;
+  box-shadow: 0px 2px 5px #0f212e;
+}
+
+.amount-box{
+  background-color: #0f212e;
+  color: white;
+}
+
+.amount-box:hover{
+  background-color: #071824;
+}
+
+.wallet-btn{
+  background-color: #1475e1;
+}
+
+.wallet-btn:hover{
+  background-color: #105eb4;
+}
+
+.grid-main{
+  background-color: #0f212e;
+}
+
+.sidebar{
+  background-color: #213743;
+}
+
+.sidebar-btns{
+  background-color: #0f212e;
+}
+
+.sidebar-btns button:hover{
+  background-color: #2f4553;
+}
+
+.sidebar-active{
+  background-color: #2f4553;
+}
+
+.tile{
+  background-color: #2f4553;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+
+.tile-hover:hover{
+  background-color: #557086;
+  transform: translateY(-5px); /* Elevate the box on hover */
+}
+
+
+.input-div{
+  background-color: #2f4553;
+}
+
+input[type='text']{
+  background-color: #0f212e;
+}
+
+input[type='number']{
+  background-color: #0f212e;
+}
+
+.half:hover, .double:hover{
+  background-color: #557086;
+}
+
+.bet-btn{
+  background-color: #00e701;
+}
+
+.bet-btn:hover{
+  background-color: #1fff20;
+}
+
+.gem {
+  position: relative;
+  animation: popAnimation 300ms forwards;
+}
+
+.gem-image {
+  width: 100%;
+  height: 100%;
+  background: url('assets/gem.svg') no-repeat center center;
+  background-color: #071824;
+  background-size: contain;
+}
+
+.mine {
+  position: relative;
+  animation: popAnimation 300ms forwards;
+  width: 70%;
+  height: 70%;
+}
+
+.effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 150%;
+  transform: translate(-2px, -12px);
+}
+
+.mine-image {
+  width: 100%;
+  height: 100%;
+  background: url('assets/mine.svg') no-repeat center center;
+  background-color: #071824;
+  background-size: contain;
+  z-index: 99999;
+}
+
+
+@keyframes popAnimation {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.wallet-text{
+  display: none;
+}
+
+
+@media (min-width: 768px) {
+  .wallet-text {
+    display: block;
+  }
+
+  .wallet-icon {
+    display: none;
+  }
+}
+
+.fetching {
+  animation: fetchingAnimation var(--duration) infinite;
+}
+
+@keyframes fetchingAnimation {
+  0%, 100% {
+    transform: scale(1);
+    background-color: #2f4553; /* original color */
+  }
+  50% {
+    transform: scale(1.1);
+    background-color: #4a627a; /* fetching color */
+  }
+}
+
+/* background-color: #2f4553; */
+  /* box-shadow: #213743; */

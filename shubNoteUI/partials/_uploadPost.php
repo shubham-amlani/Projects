@@ -1,1 +1,0 @@
-<a href="upload.php" class="fixed-bottom-right"><i class="fas fa-plus"></i></a>
