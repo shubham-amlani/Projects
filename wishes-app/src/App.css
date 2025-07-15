@@ -1,43 +1,41 @@
-/* Base Reset */
+/* Reset and Base */
 * {
   box-sizing: border-box;
 }
-
 body {
   margin: 0;
   padding: 0;
   background-color: #f3f5f2;
   font-family: 'Philosopher', serif;
   color: #2f2f2f;
-  display: flex;
-  justify-content: center;
+  min-height: 100vh;
+  display: block;
 }
 
-/* Reusable Container */
+/* Main App Container */
 .container {
-  max-width: 750px;
-  margin: 60px auto;
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto;
   padding: 30px 20px;
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   text-align: center;
+  min-height: calc(100vh - 80px); /* Ensure full height without extra white space */
+  position: relative;
 }
 
 /* Title */
-.container h1 {
-  font-size: 2.2rem;
-  margin-bottom: 30px;
+.container h1, .bday-heading {
+  font-size: 2rem;
+  margin-bottom: 25px;
   color: #5d3fd3;
 }
 
-/* Shlok Section */
+/* Shlok Display */
 .shlok-box {
   margin-bottom: 30px;
-  padding: 20px;
-  border: 2px dashed #b39ddb;
-  border-radius: 15px;
-  background-color: #fafafa;
 }
 
 .sanskrit {
@@ -51,92 +49,88 @@ body {
 .transliteration {
   font-size: 1rem;
   color: #555;
-  font-style: italic;
   margin-bottom: 10px;
 }
 
-.translation,
-.commentary {
-  font-size: 1.05rem;
+.translation {
+  font-size: 1.1rem;
+  font-style: italic;
   color: #333;
-  margin: 15px 0;
   line-height: 1.5;
-  text-align: justify;
 }
 
-/* Buttons */
-.app-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
+.commentary {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.4;
   margin-top: 20px;
 }
 
+/* Buttons */
 button {
   padding: 12px 24px;
+  margin: 10px 5px;
   font-size: 1rem;
   font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
   opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-.app-buttons button:first-child {
-  background-color: #6c5ce7;
-  color: white;
-}
-
-.app-buttons button:last-child {
-  background-color: #ffeaa7;
-  color: #2d3436;
-}
-
-/* Corner Feather */
-.corner-feather {
-  width: 70px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  opacity: 0.85;
+.app-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 /* Birthday Layout */
 .birthday-container {
+  width: 90%;
   max-width: 800px;
-  margin: 60px auto;
-  padding: 40px 20px;
+  margin: 40px auto;
+  padding: 30px 20px;
   background: linear-gradient(#fffbe6, #f3f5f2);
   border-radius: 25px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   text-align: center;
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
+/* SVGs */
 .birthday-krishna {
-  width: 140px;
-  max-width: 80%;
-  margin: 0 auto 25px;
-  display: block;
+  width: 100px;
+  margin-bottom: 20px;
 }
 
 .birthday-feather {
-  width: 70px;
+  width: 60px;
   position: absolute;
-  top: 15px;
+  top: 20px;
   right: 20px;
   opacity: 0.9;
 }
 
-/* Birthday Text */
+.corner-feather {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  opacity: 0.7;
+}
+
+/* Text */
 .birthday-message {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: #2e2e2e;
   margin: 20px 0;
   line-height: 1.6;
@@ -151,14 +145,14 @@ button:hover {
 /* Birthday Buttons */
 .birthday-buttons {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-  margin-top: 25px;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .birthday-buttons button {
-  padding: 12px 24px;
+  padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
   border: none;
@@ -177,43 +171,68 @@ button:hover {
   color: white;
 }
 
-/* Media Queries */
+/* Personal Message Box */
+.personal-message-box {
+  background-color: #fff9f0;
+  border-left: 5px solid #6c5ce7;
+  padding: 25px 20px;
+  margin-top: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: left;
+}
+
+.personal-message-box .birthday-message {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #3a3a3a;
+}
+
+.personal-message-box .birthday-sign {
+  text-align: right;
+  margin-top: 20px;
+  color: #6a1b9a;
+  font-style: italic;
+}
+
+/* 🎯 Responsive Tweaks */
 @media (max-width: 600px) {
-  .container {
-    padding: 20px 15px;
-    margin: 30px 10px;
-  }
-  .bday-heading{
-    font-size: 1.4rem;
-  }
-  .shlok-box {
-    padding: 15px;
+  .sanskrit {
+    font-size: 1.2rem;
   }
 
-  .corner-feather,
-  .birthday-feather {
-    width: 50px;
+  .translation, .commentary, .birthday-message {
+    font-size: 1rem;
+  }
+
+  .birthday-krishna {
+    width: 80px;
+  }
+
+  .birthday-feather, .corner-feather {
+    width: 40px;
     top: 10px;
     right: 10px;
   }
 
-  .birthday-krishna {
-    width: 110px;
+  .bday-heading {
+    font-size: 1.2rem;
   }
 
-  .birthday-message {
-    font-size: 1.1rem;
-  }
-
-  .app-buttons,
-  .birthday-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .app-buttons button,
-  .birthday-buttons button {
+  .birthday-buttons button, .app-buttons button {
     width: 100%;
-    max-width: 250px;
+    margin: 5px 0;
+  }
+
+  .personal-message-box {
+    padding: 18px 16px;
+  }
+
+  .container h1 {
+    font-size: 1.8rem;
+  }
+
+  .shlok-box h2 {
+    font-size: 1.2rem;
   }
 }
