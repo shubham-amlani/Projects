@@ -69,7 +69,7 @@ function App() {
 
   // 🎂 Check for birthday (14 July)
   const today = new Date();
-  const isBirthday = today.getDate() === 15 && today.getMonth() === 6;
+  const isBirthday = today.getDate() === 17 && today.getMonth() === 6;
 
   // Birthday screen
   if (isBirthday && !showApp) {
@@ -92,18 +92,14 @@ function App() {
         {/* Personal Thank You Message */}
         <div className="personal-message-box">
           <p className="birthday-message">
-            On your special day, I want to thank you — not just for being a
-            Krishna bhakt and a beautiful soul, but for being a light during my
-            darkest times. When I was broken, confused, and quietly battling
-            with myself, you stood beside me with kindness, patience, and
-            strength. You listened when I had no words, and reminded me of my
-            worth when I had forgotten it.
+            On your special day I want to thank you. Dealing with that kitty is not easy, still you stood for me, argued with her, explained to her. Thank you so much for being my information carrier 😂
             <br />
             <br />
             Your support in that phase of my life meant more than I could ever
-            express. You didn’t just help me heal — you inspired me to rise.
-            This app, this journey, this growth — it’s all real, and a part of
-            it carries your silent contribution.
+            express. Thank you for unveiling the truth at right times and help me navigate my way out this dark tunnel. Well I still wish to go back in, wish me luck I don't get lost again. 
+            After all this...kitty still has the audacity to say "I am always right" 😂
+            <br />
+            PS: Ho sake to usse samjhana...🤧
             <br />
             <br />
             May Lord Krishna bless you endlessly for the love and clarity you've
